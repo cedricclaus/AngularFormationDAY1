@@ -1,0 +1,50 @@
+<table style="width: 50%">
+    <tr>
+        <td>Reference Article</td>
+        <td>libellé</td>
+        <td>Prix Unitaire</td>
+        <td>Quantité</td>
+        <td>Montant HT</td>
+        <td>Montant TTC</td>
+    </tr>
+
+
+        <tr ng-repeat="article in articles" ng-class="{big:isBig(article)}">
+            <td>{{article['ISBN-10']}}</td>
+            <td>{{article.title}}</td>
+            <td>{{article.price}}</td>
+            <td><input type="text" ng-model="article.qty"  size="5"/> </td>
+            <td>{{article.price * article.qty| currency}}</td>
+            <td>{{article.price * article.qty * (1+tva)| currency}} </td>
+            <td> <a href="" ng-click="deleteArticle(article)">delete</a></td>
+            <td></td>
+        </tr>
+
+
+
+
+</table>
+<div>
+    Total (HT) : {{total()| currency}}
+</div>
+<div>
+    Total (TTC) : {{total() * (1+tva)| currency}}
+</div>
+<div>
+    <form ng-submit="addArticle()">
+        <select ng-model="selectedItem" ng-options="b['ISBN-10'] + b.title for b in books"></select>
+
+        <!--<input type="text" ng-model="selectedItem['ISBN-10']"  size="30" placeholder=reference>-->
+        <input type="text" ng-model="selectedItem.title"  size="30" placeholder=libelle>
+        <input type="text" ng-model="selectedItem.price"  size="30" placeholder="prix unitaire">
+
+        <input class="btn-primary" type="submit" value="add">
+    </form>
+
+</div>
+        <div>{{books | json}}</div>
+
+
+
+
+

@@ -1,0 +1,31 @@
+
+<p>
+<table style="width: 50%">
+  <tr>
+    <td>Reference Article</td>
+    <td>libellé</td>
+    <td>Prix Unitaire</td>
+    <td>Quantité</td>
+    <td>Montant HT</td>
+    <td>Montant TTC</td>
+  </tr>
+
+
+  <tr ng-repeat="article in articles" ng-class="{big:isBig(article)}">
+    <td>{{article.ref}}</td>
+    <td>{{article.libelle}}</td>
+    <td>{{article.pu}}</td>
+    <td><input type="text" ng-model="article.qty"  size="5"/> </td>
+    <td>{{article.pu * article.qty| currency}}</td>
+    <td>{{article.pu * article.qty * (1+tva)| currency}} </td>
+    <td> <a href="" ng-click="deleteArticle(article)">delete</a></td>
+    <td></td>
+  </tr>
+
+
+
+
+</table>
+
+  {{books}}
+</p>
